@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "author": "Carla Ferreira",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultra",
+      "top": -84.9,
+      "left": -253.7,
+      "attrs": { "distance": "159" }
+    },
+    { "type": "wokwi-potentiometer", "id": "soil", "top": -106.9, "left": 76.6, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "rain", "top": -106.9, "left": -38.6, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "buzz", "top": -20, "left": 130, "attrs": {} },
+    { "type": "wokwi-led", "id": "green", "top": 120, "left": 160, "attrs": { "color": "green" } },
+    {
+      "type": "wokwi-led",
+      "id": "yellow",
+      "top": 70,
+      "left": 160,
+      "attrs": { "color": "yellow" }
+    },
+    { "type": "wokwi-led", "id": "red", "top": 20, "left": 160, "attrs": { "color": "red" } },
+    { "type": "wokwi-relay-module", "id": "rele", "top": 120, "left": -200, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "bomba_led",
+      "top": 111.6,
+      "left": -101.8,
+      "attrs": { "color": "blue" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ultra:VCC", "esp:3V3", "red", [] ],
+    [ "ultra:GND", "esp:GND", "black", [] ],
+    [ "ultra:TRIG", "esp:4", "orange", [] ],
+    [ "ultra:ECHO", "esp:5", "blue", [] ],
+    [ "soil:VCC", "esp:3V3", "red", [] ],
+    [ "soil:GND", "esp:GND", "black", [] ],
+    [ "soil:SIG", "esp:0", "green", [] ],
+    [ "rain:VCC", "esp:3V3", "red", [] ],
+    [ "rain:GND", "esp:GND", "black", [] ],
+    [ "rain:SIG", "esp:1", "yellow", [] ],
+    [ "buzz:1", "esp:3", "purple", [] ],
+    [ "buzz:2", "esp:GND", "black", [] ],
+    [ "green:A", "esp:6", "green", [] ],
+    [ "green:C", "esp:GND", "black", [] ],
+    [ "yellow:A", "esp:7", "yellow", [] ],
+    [ "yellow:C", "esp:GND", "black", [] ],
+    [ "red:A", "esp:2", "red", [] ],
+    [ "red:C", "esp:GND", "black", [] ],
+    [ "rele:VCC", "esp:3V3", "red", [] ],
+    [ "rele:GND", "esp:GND", "black", [] ],
+    [ "rele:IN", "esp:8", "blue", [] ],
+    [ "rele:COM", "esp:3V3", "red", [] ],
+    [ "bomba_led:A", "rele:NO", "blue", [] ],
+    [ "bomba_led:C", "esp:GND", "black", [] ]
+  ],
+  "dependencies": {}
+}
